@@ -14,7 +14,8 @@ const koajv = require('koa-ajv-validation')
 
 const ajvOptions = {
   allErrors: true,
-  useDefaults: true
+  useDefaults: true,
+  schemaId: 'auto',
 }
 
 const schema = {
@@ -50,7 +51,8 @@ const koajv = require('koa-ajv-validation')
 
 const ajvOptions = {
   allErrors: true,
-  useDefaults: true
+  useDefaults: true,
+  schemaId: 'auto',
 }
 
 const schema = {
@@ -77,7 +79,8 @@ const koajv = require('koa-ajv-validation')
 
 const ajvOptions = {
   allErrors: true,
-  useDefaults: true
+  useDefaults: true,
+  schemaId: 'auto',
 }
 
 const schema = {
@@ -103,7 +106,8 @@ const koajv = require('koa-ajv-validation')
 
 const ajvOptions = {
   allErrors: true,
-  useDefaults: true
+  useDefaults: true,
+  schemaId: 'auto',
 }
 
 const schema = {
