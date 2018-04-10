@@ -1,5 +1,5 @@
 {
-  "name": "@frichti/koa-ajv-validation",
+  "name": "koa-ajv-validation",
   "version": "1.0.0",
   "description": "Koa middleware for AJV validation on query string, body payload and params",
   "main": "index.js",
