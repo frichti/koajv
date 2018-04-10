@@ -89,9 +89,9 @@ const schema = {
   }
 }
 
-const queryValidatorMiddleware = koajv.queryValidator(schema, ajvOptions) // Will check ctx.params
+const paramsValidatorMiddleware = koajv.paramsValidator(schema, ajvOptions) // Will check ctx.params
 
-router.get('/example/params/:category', queryValidatorMiddleware, routeHandler)
+router.get('/example/params/:category', paramsValidatorMiddleware, routeHandler)
 ```
 
 ## Generic validation
