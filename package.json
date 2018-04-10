@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "eslint ./index.js ./tests",
-    "test": "NODE_ENV=test nyc --reporter=html --reporter=text-summary mocha ./tests/index.js --reporter=dot",
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=text-summary --exclude tests mocha ./tests/index.js --reporter=dot",
     "watch": "watch 'npm test' . tests --wait 5"
   },
   "repository": {
