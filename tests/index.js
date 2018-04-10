@@ -9,7 +9,7 @@ beforeEach(() => {
   server = app.listen(9000)
 })
 
-describe('Koa-ajv-validation', function () {
+describe('Koajv', function () {
 
   describe('Body validator', function () {
     it('Should not throw an error if the body is valid', async () => {

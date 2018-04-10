@@ -1,5 +1,5 @@
 {
-  "name": "koa-ajv-validation",
+  "name": "koajv",
   "version": "1.0.0",
   "description": "Koa middleware for AJV validation on query string, body payload and params",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frichti/koa-ajv-validation.git"
+    "url": "git+https://github.com/frichti/koajv.git"
   },
   "keywords": [
     "koa",

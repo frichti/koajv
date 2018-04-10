@@ -10,7 +10,7 @@ You can also look at the tests scenarios in the tests directory to get running e
 In this example the call can looks like : `POST http://host.com/example/body`
 
 ```js
-const koajv = require('koa-ajv-validation')
+const koajv = require('koajv')
 
 const ajvOptions = {
   allErrors: true,
@@ -47,7 +47,7 @@ router.post('/example/body', bodyValidatorMiddleware, routeHandler)
 In this example the call can looks like : `GET http://host.com/example/query?name=test&category=Student`
 
 ```js
-const koajv = require('koa-ajv-validation')
+const koajv = require('koajv')
 
 const ajvOptions = {
   allErrors: true,
@@ -75,7 +75,7 @@ router.get('/example/query', queryValidatorMiddleware, routeHandler)
 In this example the call can looks like : `GET http://host.com/example/params/teacher`
 
 ```js
-const koajv = require('koa-ajv-validation')
+const koajv = require('koajv')
 
 const ajvOptions = {
   allErrors: true,
@@ -102,7 +102,7 @@ router.get('/example/params/:category', paramsValidatorMiddleware, routeHandler)
 You can also instantiate a validator function by using the facotry method `koajv.createValidator()'
 
 ```js
-const koajv = require('koa-ajv-validation')
+const koajv = require('koajv')
 
 const ajvOptions = {
   allErrors: true,
