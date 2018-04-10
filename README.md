@@ -1,3 +1,7 @@
+[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)]()
+[![node](https://img.shields.io/badge/node-8.0.0-brightgreen.svg)]()
+
 # Koa-ajv-validation
 
 Koa middleware factory to validate, querystring, body payload, route params
