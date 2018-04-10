@@ -1,4 +1,4 @@
-# Koa-ajv-validation
+# Koajv
 
 Koa middleware factory to validate, querystring, body payload, route params
 
@@ -97,7 +97,7 @@ const paramsValidatorMiddleware = koajv.paramsValidator(schema, ajvOptions) // W
 router.get('/example/params/:category', paramsValidatorMiddleware, routeHandler)
 ```
 
-## Generic validation
+## Generic validation :
 
 You can also instantiate a validator function by using the facotry method `koajv.createValidator()'
 
@@ -128,6 +128,25 @@ try {
 } catch (err) {
 
 }
+```
+
+## Error Handling :
+
+Here is a simple example of middleware to catch koajv errors :
+
+```js
+app.use(async(ctx, next) => {
+  try {
+    await next()
+  } catch (err) {
+    ctx.status = err.status
+    ctx.body = {
+      message: err.message,
+      code: err.code || 'UNKNOWN_ERROR',
+      details: err.details || 'no details'
+    }
+  }
+})
 ```
 
 ## Tests
