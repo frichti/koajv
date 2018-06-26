@@ -4,20 +4,25 @@ const Ajv = require('ajv')
 
 function validatorFactory(schema, options) {
   const ajv = new Ajv(options)
+
   ajv.addSchema(schema)
 
   return function (body) {
     const isValid = ajv.validate(schema.id, body)
     if (!isValid) {
-      const error = new Error('Invalid Payload')
-      error.code = 'INVALID_PAYLOAD'
-      error.details = ajv.errors.map(err => {
-        return {
-          field: err.dataPath,
-          reason: err.message
-        }
-      })
 
+      const firstAjvError = ajv.errors[0]
+      const property = firstAjvError.dataPath.substr(1)
+      const constraint = firstAjvError.keyword
+
+      const error = new Error('Invalid Payload')
+      error.code = `INVALID_${property.toUpperCase()}_${constraint.toUpperCase()}`
+      error.message = `${property} ${firstAjvError.message}`
+
+      if (!property && constraint === 'required' ) {
+        error.code = `INVALID_${firstAjvError.params.missingProperty.toUpperCase()}_${constraint.toUpperCase()}`
+        error.message = `${firstAjvError.message}`
+      }
       throw error
     }
   }

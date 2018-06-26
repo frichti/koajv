@@ -20,23 +20,23 @@ const queryValidator = koajv.queryValidator({
   id: 'query',
   type: 'object',
   additionalProperties: false,
+  required: ['id', 'name'],
   properties: {
     id: { type: 'string' },
     name: { type: 'string' },
   },
-  required: ['id', 'name']
 }, { schemaId: 'auto' })
 
 const paramsValidator = koajv.paramsValidator({
   id: 'params',
   type: 'object',
   additionalProperties: false,
+  required: ['id'],
   properties: {
     id: {
       type: 'string',
       pattern: '^VALID$'},
   },
-  required: ['id']
 }, { schemaId: 'auto' })
 
 const router = new Router()
@@ -56,7 +56,6 @@ app.use(async(ctx, next) => {
     ctx.body = {
       message: err.message,
       code: err.code || 'UNKNOWN_ERROR',
-      details: err.details || 'no details'
     }
   }
 })

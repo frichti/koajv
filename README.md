@@ -5,6 +5,10 @@ Koa middleware factory to validate, querystring, body payload, route params
 You can find examples of how to use this library.
 You can also look at the tests scenarios in the tests directory to get running examples to use.
 
+## Breaking changes :
+
+- v1.0.0 -> v2.0.0 : The validation error format has changed
+
 ## Body validation :
 
 In this example the call can looks like : `POST http://host.com/example/body`

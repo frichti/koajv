@@ -21,19 +21,15 @@ describe('Koajv', function () {
       assert.equal(res.status, 200)
     })
 
-    it('Should throw an error if the body is NOT valid', async () => {
+    it('Should throw an error with code: INVALID_ID_TYPE and message: "id should be integer"', async () => {
       const res = await superagent
         .post('http://localhost:9000/test/body')
         .send({ id: 'Invalid string' })
         .catch(err => err.response)
 
       assert.deepEqual(res.body, {
-        message: 'Invalid Payload',
-        code: 'INVALID_PAYLOAD',
-        details: [{
-          field: '.id',
-          reason: 'should be integer'
-        }]
+        code: 'INVALID_ID_TYPE',
+        message: 'id should be integer'
       })
       assert.equal(res.status, 400)
 
@@ -49,18 +45,14 @@ describe('Koajv', function () {
       assert.equal(res.status, 200)
     })
 
-    it('Should throw an error if the querystring is NOT valid', async () => {
+    it('Should throw an error with code: INVALID_NAME_REQUIRED and message: "should have required property \'name\'', async () => {
       const res = await superagent
         .get('http://localhost:9000/test/querystring?id=123456')
         .catch(err => err.response)
 
         assert.deepEqual(res.body, {
-          message: 'Invalid Payload',
-          code: 'INVALID_PAYLOAD',
-          details: [{
-            field: '',
-            reason: 'should have required property \'name\''
-          }]
+          code: 'INVALID_NAME_REQUIRED',
+          message: 'should have required property \'name\''
         })
         assert.equal(res.status, 400)
     })
@@ -75,18 +67,14 @@ describe('Koajv', function () {
       assert.equal(res.status, 200)
     })
 
-    it('Should throw an error if the params is NOT valid', async () => {
+    it('Should throw an error with code: INVALID_ID_PATTERN and message: "id should match pattern \"^VALID$\"', async () => {
       const res = await superagent
         .get('http://localhost:9000/test/params/INVALID')
         .catch(err => err.response)
 
         assert.deepEqual(res.body, {
-          message: 'Invalid Payload',
-          code: 'INVALID_PAYLOAD',
-          details: [{
-            field: '.id',
-            reason: 'should match pattern "^VALID$"'
-          }]
+          code: 'INVALID_ID_PATTERN',
+          message: 'id should match pattern \"^VALID$\"'
         })
         assert.equal(res.status, 400)
     })
