@@ -147,7 +147,6 @@ app.use(async(ctx, next) => {
     ctx.body = {
       message: err.message,
       code: err.code || 'UNKNOWN_ERROR',
-      details: err.details || 'no details'
     }
   }
 })
