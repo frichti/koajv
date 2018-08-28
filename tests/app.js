@@ -39,9 +39,45 @@ const paramsValidator = koajv.paramsValidator({
   },
 }, { schemaId: 'auto' })
 
+const customValidator = koajv.bodyValidator({
+  id: 'body',
+  type: 'object',
+  additionalProperties: false,
+  properties: {
+    id: { type: 'integer' },
+    name: {
+      type: 'string',
+      trim: true
+    },
+  }
+}, {
+  schemaId: 'auto',
+  keywords: {
+    trim: {
+      type: 'string',
+      modifying: true,
+      compile: function (sch, parentSchema) {
+        return function(data, dataPath, parentData, property) {
+          if (typeof data === 'string') {
+            if (sch) {
+              parentData[property] = data.trim()
+            }
+            return true
+          }
+          return false
+        }
+      }
+    }
+  }
+})
+
 const router = new Router()
 
 router.post('/test/body', bodyValidator, (ctx) => ctx.body = 'OK')
+router.post('/test/custom', customValidator, (ctx) => {
+  ctx.status = 200
+  ctx.body = ctx.request.body.name
+})
 router.get('/test/querystring', queryValidator, (ctx) => ctx.body = 'OK')
 router.get('/test/params/:id', paramsValidator, (ctx) => ctx.body = 'OK')
 

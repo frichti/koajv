@@ -5,6 +5,14 @@ const Ajv = require('ajv')
 function validatorFactory(schema, options) {
   const ajv = new Ajv(options)
 
+  if (options.keywords) {
+    const keywords = Object.keys(options.keywords)
+    keywords.forEach((kw) => {
+      ajv.addKeyword(kw, options.keywords[kw])
+    })
+    delete options.keywords
+  }
+
   ajv.addSchema(schema)
 
   return function (body) {

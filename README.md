@@ -9,6 +9,10 @@ You can also look at the tests scenarios in the tests directory to get running e
 
 - v1.0.0 -> v2.0.0 : The validation error format has changed
 
+## Minor changes :
+
+- v2.0.0 -> v2.1.0 : Add support for custom keywords
+
 ## Body validation :
 
 In this example the call can looks like : `POST http://host.com/example/body`
@@ -20,6 +24,23 @@ const ajvOptions = {
   allErrors: true,
   useDefaults: true,
   schemaId: 'auto',
+  keywords: {
+    trim: {
+      type: 'string',
+      modifying: true,
+      compile: function (sch, parentSchema) {
+        return function(data, dataPath, parentData, property) {
+          if(typeof data === 'string') {
+            if(sch) {
+              parentData[property] = data.trim()
+            }
+            return true
+          }
+          return false
+        }
+      }
+    }
+  }
 }
 
 const schema = {
@@ -150,6 +171,38 @@ app.use(async(ctx, next) => {
     }
   }
 })
+```
+
+## Custom keywords :
+
+To add custom keywords you can pass it as an options
+
+```js
+const koajv = require('koajv')
+
+const ajvOptions = {
+  allErrors: true,
+  useDefaults: true,
+  schemaId: 'auto',
+  keywords: {
+    trim: {
+      type: 'string',
+      modifying: true,
+      compile: function (sch, parentSchema) {
+        return function(data, dataPath, parentData, property) {
+          if(typeof data === 'string') {
+            if(sch) {
+              parentData[property] = data.trim()
+            }
+            return true
+          }
+          return false
+        }
+      }
+    }
+  }
+}
+
 ```
 
 ## Tests

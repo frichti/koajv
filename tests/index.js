@@ -80,6 +80,16 @@ describe('Koajv', function () {
     })
   })
 
+  describe('Custom Keywords', function () {
+    it('Should use the custom keywords trim', async () => {
+      const res = await superagent
+        .post('http://localhost:9000/test/custom')
+        .send({ name: 'Sacha    ' })
+      assert.equal(res.text, 'Sacha')
+      assert.equal(res.status, 200)
+    })
+  })
+
 })
 
 afterEach(() => {
